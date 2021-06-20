@@ -1,0 +1,15 @@
+---
+# BasedOnStyle: LLVM
+---
+Language: Cpp
+UseTab: Never
+# AllowShortBlocksOnASingleLine: Always
+# AllowShortIfStatementsOnASingleLine: true
+# AllowShortFunctionsOnASingleLine: Empty
+# AllowShortLoopsOnASingleLine: true
+# Cpp11BracedListStyle: true
+ColumnLimit: 0
+# ConstructorInitializerAllOnOneLineOrOnePerLine: true
+# BreakConstructorInitializers: false
+# BreakStringLiterals: false
+# BreakBeforeBraces: Attach
