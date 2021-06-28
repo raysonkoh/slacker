@@ -6,7 +6,7 @@
 #include <thread>
 
 size_t maxHeight, maxWidth;
-int ONE_MINUTE = 60;
+int TEN_MINUTE = 60 * 10;
 
 void printPoint(CGPoint *p) {
   std::cout << "x: " << p->x << " y: " << p->y << std::endl;
@@ -21,8 +21,8 @@ int main() {
     auto idleTime = get_user_idle_time();
     std::cout << "idleTime: " << idleTime << std::endl;
 
-    while (idleTime < ONE_MINUTE) {
-      std::this_thread::sleep_for(std::chrono::seconds(60)); // update here for interval between mouse_move
+    while (idleTime < TEN_MINUTE) {
+      std::this_thread::sleep_for(std::chrono::minutes(10)); // update here for interval between mouse_move
       idleTime = get_user_idle_time();
       std::cout << "idleTime: " << idleTime << std::endl;
     }
