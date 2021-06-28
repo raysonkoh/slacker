@@ -6,4 +6,6 @@
 
 CGPoint *get_current_mouse_location();
 
+void move_mouse(CGPoint* p, size_t maxHeight, size_t maxWidth);
+
 #endif
