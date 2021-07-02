@@ -7,7 +7,7 @@
 #include <thread>
 
 size_t maxHeight, maxWidth;
-int TIMEOUT = 60 * 5; // 5mins, update here for interval between mouse_move
+int TIMEOUT = 60 * 2; // 2mins, update here for interval between mouse_move
 
 CGPoint *p;
 
