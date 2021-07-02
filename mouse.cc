@@ -9,7 +9,7 @@ CGPoint *get_current_mouse_location() {
 
 void move_mouse(CGPoint *p, size_t maxHeight, size_t maxWidth) {
   CGPoint p2;
-  p2.x = p->x + 1.0, p2.y = p->y + 1.0;
+  p2.x = p->x + 2.0, p2.y = p->y + 2.0;
 
   if (p2.x >= maxWidth)
     p2.x -= maxWidth;

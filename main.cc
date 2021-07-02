@@ -1,39 +1,37 @@
 #include "activity.h"
 #include "display.h"
+#include "logger.h"
 #include "mouse.h"
 #include <chrono>
 #include <iostream>
 #include <thread>
 
 size_t maxHeight, maxWidth;
-int TEN_MINUTE = 60 * 10;
+int TIMEOUT = 60 * 5; // 5mins, update here for interval between mouse_move
 
-void printPoint(CGPoint *p) {
-  std::cout << "x: " << p->x << " y: " << p->y << std::endl;
-}
+CGPoint *p;
 
 int main() {
   maxHeight = get_display_height();
   maxWidth = get_display_width();
-  std::cout << "maxHeight: " << maxHeight << " maxWidth: " << maxWidth << std::endl;
+
+  log("maxHeight: " + std::to_string(maxHeight) + " maxWidth: " + std::to_string(maxWidth));
 
   while (true) {
-    auto idleTime = get_user_idle_time();
-    std::cout << "idleTime: " << idleTime << std::endl;
-
-    while (idleTime < TEN_MINUTE) {
-      std::this_thread::sleep_for(std::chrono::minutes(10)); // update here for interval between mouse_move
-      idleTime = get_user_idle_time();
-      std::cout << "idleTime: " << idleTime << std::endl;
+    while (get_user_idle_time() < TIMEOUT) {
+      std::this_thread::sleep_for(std::chrono::seconds(TIMEOUT / 2));
     }
+    log("idleTime: " + std::to_string(get_user_idle_time()) + "s");
 
-    CGPoint *p = get_current_mouse_location();
-    printPoint(p);
+    p = get_current_mouse_location();
+    log("from: (" + std::to_string(p->x) + ", " + std::to_string(p->y) + ")");
     move_mouse(p, maxHeight, maxWidth);
     delete p;
 
     p = get_current_mouse_location();
-    printPoint(p);
+    log("to: (" + std::to_string(p->x) + ", " + std::to_string(p->y) + ")");
     delete p;
+
+    std::this_thread::sleep_for(std::chrono::seconds(TIMEOUT));
   }
 }
